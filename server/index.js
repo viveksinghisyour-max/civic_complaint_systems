@@ -21,7 +21,11 @@ app.get('/', (req, res) => {
     res.json({ message: "Civic Complaint API Running with SQLite" });
 });
 
-// Start Server
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+// Start Server only if run directly
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app;
