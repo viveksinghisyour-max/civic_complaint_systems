@@ -73,3 +73,30 @@ civic_complaint_systems/
 ├── server/         # Express Backend
 └── README.md       # Project Documentation
 ```
+
+## 🚀 Deployment
+
+### Frontend (Client) - Deployed on Vercel
+The React client is optimized for deployment on [Vercel](https://vercel.com/).
+
+1.  Push your code to a GitHub repository.
+2.  Log in to Vercel and click **"Add New..."** -> **"Project"**.
+3.  Import your repository.
+4.  **Configure Project**:
+    *   **Root Directory**: Click "Edit" and select `client`.
+    *   **Build Command**: `npm run build` (Default)
+    *   **Output Directory**: `dist` (Default)
+    *   **Install Command**: `npm install` (Default)
+5.  Click **Deploy**.
+
+### Backend (Server) - Important Note
+⚠️ **The backend uses SQLite**, which is a file-based database. Vercel Serverless Functions are ephemeral, meaning **your database will be wiped on every redeployment or cold start** if hosted on Vercel.
+
+**Recommended Production Hosting:**
+For a persistent SQLite database without code changes, deploy the `server` directory to a VPS or a container service that supports persistent disks (e.g., **Render** with a generic service, **Railway**, or **DigitalOcean App Platform**).
+
+**If you MUST use Vercel for Backend:**
+You will need to migrate from SQLite to a cloud database like **Vercel Postgres**, **Supabase**, or **MongoDB Atlas**.
+1. Update `server/db.js` to connect to the cloud DB.
+2. Add environment variables in Vercel.
+3. Deploy the `server` directory as a separate Vercel project (or rewrite rules in a monorepo).
