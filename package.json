@@ -1,0 +1,13 @@
+{
+    "name": "civic-complaint-system-root",
+    "private": true,
+    "scripts": {
+        "setup": "npm install && cd server && npm install && cd ../client && npm install",
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
+        "server": "cd server && npm start",
+        "client": "cd client && npm run dev"
+    },
+    "devDependencies": {
+        "concurrently": "^8.0.0"
+    }
+}
